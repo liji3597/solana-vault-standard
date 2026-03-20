@@ -553,7 +553,11 @@ describe("svs-3 (Confidential Live Balance)", () => {
       expect(vaultAccount.assetVault.toBase58()).to.equal(
         assetVault.toBase58(),
       );
-      expect(vaultAccount.totalAssets.toNumber()).to.equal(0);
+      const assetVaultAccount = await getAccount(
+        connection,
+        assetVault,
+      );
+      expect(Number(assetVaultAccount.amount)).to.equal(0);
       expect(vaultAccount.decimalsOffset).to.equal(3);
       expect(vaultAccount.paused).to.equal(false);
       expect(vaultAccount.vaultId.toNumber()).to.equal(1);
